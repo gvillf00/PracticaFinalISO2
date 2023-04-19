@@ -5,11 +5,25 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author jmvm_
  */
-public class Clientes {
+@Entity
+@Table(name="tblclientes")
+public class Clientes implements Serializable {
+    
+    @Id //que indica que la columna es un identificador único
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //le decimos que es un autonomúerico
+    private int idCliente; //aquí no hace falta poner la columna de la tabla a la que se
+    
     /*
     //Datos de las columnas de las tablas
       `IdCliente` int NOT NULL AUTO_INCREMENT,
