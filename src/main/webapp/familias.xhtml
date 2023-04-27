@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>Gestión de Familias</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        
+         <!--Siempre todo dentro de un formulario si no va a cascar-->
+         
+         <ui:composition template="./WEB-INF/template/newTemplate.xhtml">
+
+            <ui:define name="content">
+                
+                prueba sobre familias
+                <h:form> <!--para qeu coja bien las llamadas al servidor, todo lo que necesite comunicación con el servidor-->
+                    <p:outputLabel value="Introduzca nombre de la familia"/>
+                    <p:inputText value="#{altaFamiliaController.fam.familia}"/> <!--la clase la primera letra en minúscula si no no funciona-->
+                    <br></br>
+                    <p:outputLabel value="Introduzca código de la familia"/>
+                    <p:inputText value="#{altaFamiliaController.fam.codigoFamilia}"/>
+                    
+                    <p:commandButton value="Insertar en BBDD familia" action="#{altaFamiliaController.insertarFamilia()}"/><!--la clase la primera letra en minúscula si no no funciona-->
+                    
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>
