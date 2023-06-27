@@ -14,10 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author Gemma
- */
 
 //siempre va con dos etiquetas qeu es una entidad y otra que le dice que es una tabla de la bbdd
 //mayus + control + i para importar rápido
@@ -35,6 +31,9 @@ public class Familias implements Serializable {
     
     @Column(name="Familia")
     private String Familia;
+    
+    @Column(name="Activo")
+    private boolean activo;
 
     public int getIdFamilia() {
         return idFamilia;
@@ -60,12 +59,21 @@ public class Familias implements Serializable {
         this.Familia = Familia;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + this.idFamilia;
-        hash = 47 * hash + Objects.hashCode(this.CodigoFamilia);
-        hash = 47 * hash + Objects.hashCode(this.Familia);
+        hash = 13 * hash + this.idFamilia;
+        hash = 13 * hash + Objects.hashCode(this.CodigoFamilia);
+        hash = 13 * hash + Objects.hashCode(this.Familia);
+        hash = 13 * hash + (this.activo ? 1 : 0);
         return hash;
     }
 
@@ -84,6 +92,9 @@ public class Familias implements Serializable {
         if (this.idFamilia != other.idFamilia) {
             return false;
         }
+        if (this.activo != other.activo) {
+            return false;
+        }
         if (!Objects.equals(this.CodigoFamilia, other.CodigoFamilia)) {
             return false;
         }
@@ -94,5 +105,15 @@ public class Familias implements Serializable {
     }
 
     
+
+    @Override
+    public String toString() {
+        return "Familias{" + "idFamilia=" + idFamilia + ", CodigoFamilia=" + CodigoFamilia + ", Familia=" + Familia + ", activo=" + activo + '}';
+    }
+
     
+
+    
+
+   
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <link href="css/tiendaonline.css" rel="stylesheet" type="text/css"/>
+        <title>Login del BackOffice</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--
+        <style>
+            div{
+                height: 200px;
+                background-color: #EEE;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+        -->
+    </h:head>
+    <h:body styleClass="centrado">
+        
+        <h:form>
+            <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+            <p:messages id="mensaje" >
+                <p:autoUpdate />
+        
+        </p:messages>
+        <h:panelGrid columns="2">
+            <p:outputLabel for="txtAdmin" value="Usuario"/>
+            <p:inputText id="txtAdmin" value="#{loginControlador.administrador.usuario}" required="true"/>
+            
+            <p:outputLabel for="txtClave" value="Clave"/>
+            <p:password id="txtClave" value="#{loginControlador.administrador.contrasena}" required="true"/>
+            
+            <p:outputLabel for="" value=""/>
+            <p:commandButton icon="ui-icon-key" value="Iniciar sesion" action="#{loginControlador.iniciarSesion()}" />
+            
+           
+         </h:panelGrid>   
+      
+        </h:form>
+        
+    </h:body>
+</html>

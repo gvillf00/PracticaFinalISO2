@@ -14,10 +14,7 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-/**
- *
- * @author Gemma
- */
+
 
 @Named
 @ViewScoped
@@ -32,13 +29,16 @@ public class AltaFamiliaController implements Serializable {
     @PostConstruct //lo primero que hace es ejecutarse para qeu reserve la memoria, es el constructor
     public void init(){
         fam=new Familias();
-        fam.setCodigoFamilia("mi codigo familia");
-        fam.setFamilia("mi nombre de familia");
+        //fam.setCodigoFamilia("mi codigo familia");
+        //fam.setFamilia("mi nombre de familia");
+        fam.setActivo(true);
     }
     
     public void insertarFamilia (){
         try{
+            fam.setActivo(true);
             familiasEJB.create(fam);
+      
             //llamar a java con mensaje de ok
         }catch (Exception e){
             System.out.println("error de:" + e.getMessage());

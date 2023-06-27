@@ -5,7 +5,7 @@
  */
 package EJB;
 
-import Modelo.Familias;
+import Modelo.Productos;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author jmvm_
  */
 @Local
-public interface FamiliasFacadeLocal {
+public interface ProductosFacadeLocal {
 
-    void create(Familias familias);
+    void create(Productos productos);
 
-    void edit(Familias familias);
+    void edit(Productos productos);
 
-    void remove(Familias familias);
+    void remove(Productos productos);
 
-    Familias find(Object id);
+    Productos find(Object id);
 
-    List<Familias> findAll();
+    List<Productos> findAll();
 
-    List<Familias> findRange(int[] range);
+    List<Productos> findRange(int[] range);
 
     int count();
     

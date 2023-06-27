@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Nuevo Stock de producto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/tiendaonline.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+       
+            <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+            
+            <h:form>
+                    <p:fieldset legend="Nuevo Stock de Producto">
+                    <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+                   
+                    <table>
+                        <tr>
+                            <td>
+                                <p:outputLabel for ="cboProducto" value="Producto"/>
+                            </td>
+                            <td>
+                                <p:selectOneMenu id="cboProducto" value="#{altaStockControlador.producto.idProducto}">
+                                    <f:selectItems value="#{altaStockControlador.listaProductos}" var="producto" itemLabel="#{producto.descripcionProducto}" itemValue="#{producto.idProducto}" />
+                                </p:selectOneMenu>
+                            </td>
+                            <td>
+                                <p:outputLabel for ="numCant" value="Cantidad Real"/>
+                            </td>
+                            <td>
+                                <p:inputNumber id="numCant" value="#{altaStockControlador.stock.cantidadreal}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:outputLabel for ="numCantPteRecibir" value="Cantidad pendiente de recibir"/>
+                            </td>
+                            <td>
+                                <p:inputNumber id="numCantPteRecibir" value="#{altaStockControlador.stock.cantidadpendienterecibir}"/>
+                            </td>
+                            <td>
+                                <p:outputLabel for ="numCantTotal" value="Cantidad total"/>
+                            </td>
+                            <td>
+                                <p:inputNumber id="numCantTotal" value="#{altaStockControlador.stock.cantidadtotal}"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{altaStockControlador.registrarStock()}" 
+                             onclick="stockInsertado();"/>
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Volver"  onclick="paginaprincipal();"/>
+                            </td>
+                        </tr>
+                    </table>
+
+            </p:fieldset>  
+               
+        </h:form>
+         <h:outputScript library="js" name="spanishLocale.js" />
+    </h:body>
+</html>

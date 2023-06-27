@@ -1,0 +1,121 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Nuevos Clientes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/tiendaonline.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <body>
+
+        
+                <h:form>
+                    <p:fieldset legend="Nuevo Cliente">
+                    <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+                   
+                    <table>
+                        <tr>
+                            <td>
+                                <p:outputLabel value="CIF  "/> 
+                            </td>
+                            <td>
+                                <p:inputText   id="CIF" value="#{altaClienteControlador.cliente.CIF}" required="true" requiredMessage="Este campo es obligatorio"/>
+                            </td>
+                            <td>
+                                <p:outputLabel  value="Nombre Completo"/>
+                            </td>
+                            <td>
+                                <p:inputText id="nombreCliente" value="#{altaClienteControlador.cliente.nombreCliente}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:outputLabel  value="Pais"/>
+                            </td>
+                            <td>
+                                <p:inputText id="pais" value="#{altaClienteControlador.cliente.pais}"/>
+                            </td>
+                            <td>
+                               <p:outputLabel  value="Mail"/>
+                            </td>
+                            <td>
+                                <p:inputText id="mail" value="#{altaClienteControlador.cliente.mail}"/>
+                            </td>
+                        </tr>  
+                            
+                        <tr>
+                            <td>
+                                 <p:outputLabel  value="Telefono"/>
+                            </td>
+                            <td>
+                                <p:inputText id="telefono" value="#{altaClienteControlador.cliente.telefono}"/>
+                            </td>
+                            <td>
+                               <p:outputLabel for="fechaAlta" value="Fecha de alta"/>
+                            </td>
+                            <td>
+                                <p:calendar  id="fechaAlta" value="#{altaClienteControlador.cliente.fechaAlta}" disabled="true"/>
+                            </td>
+                        </tr>  
+
+                        <tr>
+                            <td>
+                                <p:outputLabel  value="Usuario"/>
+                            </td>
+                            <td>
+                                <p:inputText id="user" value="#{altaClienteControlador.cliente.user}"/>
+                                
+                            </td>
+                            <td>
+                               <p:outputLabel  value="Clave"/>
+                            </td>
+                            <td>
+                                <p:inputText id="clave" value="#{altaClienteControlador.cliente.clave}"/>
+                            </td>
+                        </tr>  
+
+                        <tr>
+                            <td>
+                                <p:outputLabel  value="activo" style="visibility: hidden"/>
+                                
+                            </td>
+                            <td>
+                                <p:inputText id="activo" value="#{altaClienteControlador.cliente.activo}" disabled="true" style="visibility: hidden"/>
+                                
+                            </td>
+                            <td>
+                               
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <p:commandButton value="Insertar en BBDD" actionListener="#{altaClienteControlador.insertarCliente()}" 
+                                            onclick="clienteInsertado();"/>
+                            </td>
+                            <td>
+                               
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Volver"  onclick="paginaprincipal();"/>
+                            </td>
+                        </tr>  
+
+                           
+                    </table>
+                    
+                    </p:fieldset>
+                </h:form>
+            
+
+    </body>
+</html>
+     

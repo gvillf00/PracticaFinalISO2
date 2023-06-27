@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Direcciones de Clientes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/tiendaonline.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+            <h:outputScript library="js" name="spanishLocale.js" />
+            <p:messages id="mensaje" >
+                <p:autoUpdate />
+        
+            </p:messages>
+           
+             
+                 <p:fieldset legend="Datos de la direccion del cliente">
+                 <table>
+                    <tr>
+                            <td>
+                                <p:outputLabel for ="cboCliente" value="Cliente"/>
+                            </td>
+                            <td>
+                                <p:selectOneMenu id="cboCliente" value="#{altaDireccionClienteControlador.cliente.idCliente}">
+
+                                    <f:selectItems value="#{altaDireccionClienteControlador.listaClientes}" var="cli" itemLabel="#{cli.nombreCliente}" itemValue="#{cli.idCliente}" />
+
+                                </p:selectOneMenu>
+                            </td>
+                            <td>
+                               <p:outputLabel for ="txttitulo" value="Titulo de la direccion"/>
+                            </td>
+                            <td>
+                                <p:inputText id="txttitulo" value="#{altaDireccionClienteControlador.direccion.tituloDireccion}" />
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td>
+                                <p:outputLabel for ="txtdireccion" value="Direccion"/>
+                            </td>
+                            <td>
+                                <p:inputText id="txtdireccion" value="#{altaDireccionClienteControlador.direccion.direccion}" />
+                            </td>
+                            <td>
+                               <p:outputLabel for ="txtcodpostal" value="Codigo postal"/>
+                            </td>
+                            <td>
+                                <p:inputText id="txtcodpostal" value="#{altaDireccionClienteControlador.direccion.cp}"  />
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td>
+                                <p:outputLabel for ="txtmunicipio"  value="Municipio"/>
+                            </td>
+                            <td>
+                                <p:inputText id="txtmunicipio" value="#{altaDireccionClienteControlador.direccion.municipio}"/>
+                            </td>
+                            <td>
+                               <p:outputLabel for="txtprovincia" value="Provincia"/>               
+
+                            </td>
+                            <td>
+                                <p:inputText id="txtprovincia" value="#{altaDireccionClienteControlador.direccion.provincia}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{altaDireccionClienteControlador.registrarDireccion()}" 
+                             onclick="direccionInsertada();"/>
+                            </td>
+                            <td>
+                               
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Volver"  onclick="paginaprincipal();"/>
+                            </td>
+                        </tr>  
+
+                    </table>
+                </p:fieldset>
+           
+
+        </h:form>
+    </h:body>
+</html>

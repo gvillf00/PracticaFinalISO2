@@ -5,26 +5,28 @@
  */
 package Controlador;
 
+import EJB.FamiliasFacade;
 import EJB.FamiliasFacadeLocal;
 import Modelo.Familias;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-/**
- *
- * @author Gemma
- */
+import javax.xml.registry.infomodel.User;
+import org.primefaces.event.RowEditEvent;
 
-@Named("dtlistaFamilias")
-@ViewScoped
+
+@Named
 
 public class ListadoFamiliasController implements Serializable {
     
-    private Familias familia;
+    //private Familias familia;
      //@Inject
     private List<Familias> listafamilias;
     private String accion;
@@ -36,30 +38,27 @@ public class ListadoFamiliasController implements Serializable {
         listafamilias=familiasEJB.findAll();
         
     }
-    public void accion(){
+
+    public void modificar(Familias fam){
+        System.out.println("**********************");
+        //System.out.println("nombre:"+fam.getFamilia());
         
-    }
-    
-    public void insertarFamilia(){
-        
-    }
-    
-    public void establecerFamiliaModificar(Familias fam){
-        this.familia = fam;
-        this.accion = "M";
-    }
-    public void modificarfamilia(){
         try{
-            familiasEJB.edit(familia);
-            System.out.println("familia modificada");
-            listafamilias=familiasEJB.findAll();
-        
+            familiasEJB.edit(fam);
+            System.out.println("nombre:"+fam.getFamilia());
+        } catch(Exception e){
+            System.out.println(e.getMessage());
         }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
+        /*
+        System.out.println("**********************");
+       System.out.println(familia.toString());
+        //familiasEJB.edit(NomFamilia);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso","Cambio realizado con éxito"));
+        */
     }
-     
+
+   
+   
     public List<Familias> getListafamilias() {
         return listafamilias;
     }
@@ -72,6 +71,8 @@ public class ListadoFamiliasController implements Serializable {
         return accion;
     }
 
+    
+    
     public void setAccion(String accion) {
         this.accion = accion;
     }

@@ -5,7 +5,7 @@
  */
 package EJB;
 
-import Modelo.Familias;
+import Modelo.Stocks;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author jmvm_
  */
 @Stateless
-public class FamiliasFacade extends AbstractFacade<Familias> implements FamiliasFacadeLocal {
+public class StocksFacade extends AbstractFacade<Stocks> implements StocksFacadeLocal {
 
     @PersistenceContext(unitName = "TiendaOnLinePU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class FamiliasFacade extends AbstractFacade<Familias> implements Familias
         return em;
     }
 
-    public FamiliasFacade() {
-        super(Familias.class);
+    public StocksFacade() {
+        super(Stocks.class);
     }
     
 }

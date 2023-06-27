@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Nuevo Producto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/tiendaonline.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+                    <p:fieldset legend="Nuevo Producto">
+                    <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+                  
+                    <table>
+                        <tr>
+                            <td>
+                               <p:outputLabel for ="cboAdmin" value="Administrador"/>
+                            </td>
+                            <td>
+                                <p:selectOneMenu id="cboAdmin" value="#{altaProductoControlador.administrador.idUsuariosAdmin}">
+                                    <f:selectItems value="#{altaProductoControlador.listaAdministradores}" var="adm" itemLabel="#{adm.usuario}" itemValue="#{adm.idUsuariosAdmin}" />
+                                </p:selectOneMenu>
+                            </td>
+                            <td>
+                                <p:outputLabel for ="cboFamilia" value="Familia"/>
+                            </td>
+                            <td>
+                                <p:selectOneMenu id="cboFamilia" value="#{altaProductoControlador.familia.idFamilia}"> 
+                                    <f:selectItems value="#{altaProductoControlador.listaFamilias}" var="fam" itemLabel="#{fam.familia}" itemValue="#{fam.idFamilia}" />
+                                </p:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <p:outputLabel for ="txtcodigobarras" value="Cod. Barras"/>
+                            </td>
+                            <td>
+                                <p:inputText id="txtcodigobarras" value="#{altaProductoControlador.producto.codigoBarras}" />
+                            </td>
+                            <td>
+                                <p:outputLabel for ="txtdescripcion" value="Descripcion de producto"/>
+                            </td>
+                            <td>
+                                <p:inputTextarea id="txtdescripcion" value="#{altaProductoControlador.producto.descripcionProducto}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <p:outputLabel for ="numpreciocompra" value="Precio compra"/>
+                            </td>
+                            <td>
+                                <p:inputNumber id="numpreciocompra" value="#{altaProductoControlador.producto.precioCompra}"  />
+                            </td>
+                            <td>
+                                <p:outputLabel for ="numprecioventa" value="Precio venta"/>
+                            </td>
+                            <td>
+                                <p:inputNumber id="numprecioventa" value="#{altaProductoControlador.producto.precioVenta}"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <p:outputLabel for ="numIVA" value="IVA"/>
+                            </td>
+                            <td>
+                                <p:inputNumber id="numIVA" value="#{altaProductoControlador.producto.iva}" disabled="true"/>
+                            </td>
+                            <td>
+                                <p:outputLabel for ="numDTOVENTA" value="Descuento venta"/>
+                            </td>
+                            <td>
+                                <p:inputNumber id="numDTOVENTA" value="#{altaProductoControlador.producto.descuento}"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <p:outputLabel for ="txtfrecha"  value="Fecha Alta"/>
+                            </td>
+                            <td>
+                                <p:calendar id="txtfrecha" value="#{altaProductoControlador.producto.fechaAlta}" disabled="true"/>
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{altaProductoControlador.registrarProducto()}" 
+                             onclick="productoInsertado();"/>
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Volver"  onclick="paginaprincipal();"/>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    </table>
+
+                    </p:fieldset>
+                </h:form>
+
+    </h:body>
+</html>

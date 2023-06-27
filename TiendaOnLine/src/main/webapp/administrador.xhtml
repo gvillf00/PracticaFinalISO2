@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Nuevos Usuarios de la App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/tiendaonline.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body> 
+        <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+            <h:form>
+                    <p:fieldset legend="Nuevos usuarios">
+                    <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+                   
+                    <table>
+                        <tr>
+                            <td>
+                                <p:outputLabel value="usuario"/>
+                            </td>
+                            <td>
+                                <p:inputText value="#{administradorControlador.administrador.usuario}" />
+                            </td>
+                             <td>
+                                <p:outputLabel value="Administrador"/>
+                            </td>
+                             <td>
+                                 <p:inputText value="#{administradorControlador.administrador.esadmin}" />
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:outputLabel value="clave"/> 
+                            </td>
+                            <td>
+                                <p:password id="clave1" value="#{administradorControlador.administrador.contrasena}" 
+                                    validatorMessage="Las claves no coinciden" weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno"
+                                    feedback="true" promptLabel="Ingrese una clave" match="clave2" />
+                            </td>
+                            <td>
+                                <p:outputLabel value="repetir clave"/>
+                            </td>
+                            <td>
+                                <p:password id="clave2" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{administradorControlador.registrar()}" onclick="usuarioInsertado();"/>
+                            </td>
+                            <td>
+                                <p:commandButton icon="ui-icon-check" value="Volver"  onclick="paginaprincipal();"/>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    </table>
+            </p:fieldset>             
+        </h:form>
+
+    </h:body>
+</html>

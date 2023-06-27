@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Listado de Familias</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <style>
+            .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
+                text-align: center;
+            }
+
+            .customPanelGrid .ui-panelgrid-content {
+                align-items: center;
+            }
+        </style>
+         <!--Siempre todo dentro de un formulario si no va a cascar-->
+         
+         <ui:composition template="./WEB-INF/template/newTemplate.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id ="frmPrincipal"> <!--para qeu coja bien las llamadas al servidor, todo lo que necesite comunicación con el servidor-->
+                    
+                    <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+                    
+                    <p:dataTable var="producto" value="#{listadoProductosControlador.listaproductos}" rows="5"  id="tablaFamilias"
+                     paginator="true" paginatorPosition="both"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+
+                        <p:column headerText="Identificador producto">
+                            <h:outputText value="#{producto.idProducto}" />
+                        </p:column>
+
+                        <p:column headerText="Nombre de la Familia">
+                            <h:outputText value="#{producto.familia.familia}" />
+                        </p:column>
+
+                        <p:column headerText="Nombre del producto">
+                            <h:outputText value="#{producto.descripcionProducto}" />
+                        </p:column>
+                        <p:column headerText="Precio de compra">
+                            <h:outputText value="#{producto.precioCompra}" />
+                        </p:column>
+                        <p:column headerText="Precio de venta">
+                            <h:outputText value="#{producto.precioVenta}" />
+                        </p:column>
+                        
+                       
+                        <f:facet name="paginatorTopLeft">
+                            <p:commandButton type="button" icon="pi pi-refresh"/>
+                        </f:facet>
+
+                        <f:facet name="paginatorBottomRight">
+                            <p:commandButton type="button" icon="pi pi-cloud-upload"/>
+                        </f:facet>
+                        
+                        
+                    </p:dataTable>
+                    
+                   <p:commandButton icon="ui-icon-check" value="Volver"  onclick="paginaprincipal();"/>
+                    
+                </h:form>
+                
+                
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

@@ -29,6 +29,14 @@ and open the template in the editor.
 
             <ui:define name="content">
                 
+               <p:messages>
+                    <p:autoUpdate />
+                </p:messages>
+                
+                <p:growl id="growl" showDetail="true" sticky="true">
+                    <p:autoUpdate />
+                </p:growl>
+                
                 <style>
                     /* reset on the showcase style*/
                     body .ui-panelgrid .ui-panelgrid-cell {
@@ -42,88 +50,86 @@ and open the template in the editor.
                     }
                 </style>
 
-                <!--
-                Note: Rows and columns can have style, styleClass, and id.
-                Note: A column with a defined styleClass will ignore the styleClass specified in the columnClasses list.
-                Note: Note the use of ui-fluid to ensure that components are sized correctly and the use of ui-panelgrid-blank to remove borders.
-                -->
+              
                 
                 <!--
                 primer formulario para el cuadro de insercción de familia
-                -->
+                
                 <h:form id="frmDialogo">
                     <p:dialog id="dialogo1" widgetVar="wdialogo1" modal="true" closeOnEscape="true" draggable="false" resizable="false" header="Familias de la aplicación">
                     
                         <p:panelGrid columns="2">
                             <p:outputLabel value="Codigo Familia"></p:outputLabel>
-                            <p:inputText value="#{customer.codigoFamilia}"/>
+                            <h:outputText value="#{customer.codigoFamilia}"/>
 
                             <p:outputLabel value="Nombre Familia"></p:outputLabel>
-                            <p:inputText value="#{customer.familia}"/>
+                            <h:outputText value="#{customer.familia}"/>
 
-                             <p:commandButton value="Modificar" actionListener="#{dtlistaFamilias.modificarfamilia()}" 
+                             <p:commandButton value="Modificar" actionListener="{dtlistaFamilias.modificarfamilia()}" 
                                              update=":frmPrincipal:tablaFamilias" oncomplete="PF('wdialogo1').hide();"
                                              rendered="#{dtlistaFamilias.accion=='M'}"></p:commandButton>
                             <p:commandButton value="Cancelar" onclick="PF('wdialogo1').hide();"/>
 
                         </p:panelGrid>
-                    </p:dialog>
+                    </p:dialog>-->
+                
                     <!--
-                    <p:dialog id="dialogo2" widgetVar="wdialogo2" modal="true" closeOnEscape="true" draggable="false" resizable="false" header="Familias de la aplicación">
+                   
                     
-                        <p:panelGrid columns="2">
-                            <p:outputLabel value="Codigo Familia"></p:outputLabel>
-                            <p:inputText/>
-
-                            <p:outputLabel value="Nombre Familia"></p:outputLabel>
-                            <p:inputText/>
-
-                             <p:commandButton value="Eliminar" actionListener="#{dtlistaFamilias.modificarfamilia()}" 
-                                             update=":frmPrincipal:tablaroles" oncomplete="PF('wdialogo2').hide();"
-                                             rendered="#{dtlistaFamilias.accion=='E'}"></p:commandButton>
-                            <p:commandButton value="Cancelar" onclick="PF('wdialogo2').hide();"/>
-
-                        </p:panelGrid>
-                    </p:dialog>
-                    -->
-                </h:form>
+                </h:form>-->
                 
                 <h:form id ="frmPrincipal"> <!--para qeu coja bien las llamadas al servidor, todo lo que necesite comunicación con el servidor-->
                     
                     <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
                     
-                    <p:dataTable var="customer" value="#{dtlistaFamilias.listafamilias}" rows="5"  id="tablaFamilias"
+                    <p:dataTable var="customer" value="#{listadoFamiliasController.listafamilias}" rows="5"  id="tablaFamilias"
                      paginator="true" paginatorPosition="both"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                      currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}" editable="true" rowKey="#{customer.idFamilia}">
+                        
+                        <!--editar-->
+                        <p:column style="width: 32px">
+                            <p:rowEditor/>
+                        </p:column>
+                        
                         <p:column headerText="Identificador">
                             <h:outputText value="#{customer.idFamilia}" />
                         </p:column>
 
-                        <p:column headerText="Código Familia">
-                            <h:outputText value="#{customer.codigoFamilia}" />
+                        <p:column headerText="Código Familia">        
+                            <h:outputText value="#{customer.codigoFamilia}" />      
                         </p:column>
 
                         <p:column headerText="Nombre Familia">
-                            <h:outputText value="#{customer.familia}" />
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{customer.familia}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{customer.familia}" />
+                                </f:facet>
+                            </p:cellEditor>
                         </p:column>
-
-                        <p:column headerText="Modificar">
-                            <p:commandLink value="modificar" oncomplete="PF('wdialogo1').show();" 
-                                           actionListener="#{dtlistaFamilias.establecerFamiliaModificar(fam)}"
-                                           update=":frmDialogo:dialogo1" />
-                           
-                        </p:column>
+                        
+                        <!--<p:ajax event="rowEdit" listener="{dtlistaFamilias.modificar(customer.familia)}" update="tablaFamilias"></p:ajax>-->
+                        
+                        <p:ajax  event="rowEdit" listener="#{listadoFamiliasController.modificar(customer)}" update="tablaFamilias" ></p:ajax>
+                        
                         <!--
-                        <p:column headerText="Eliminar">
-                            <h:outputText value="eliminar" />
-                            <p:commandLink value="eliminar" oncomplete="PF('wdialogo2').show();" 
-                                           actionListener="#{dtlistaFamilias.modificarfamilia(fam)}"
-                                           update=":frmDialogo:dialogo2" />
+                        <p:column headerText="Activo">
+                            <h:outputText value="#{customer.activo}" />
                         </p:column>
+                        
                         -->
+                        <!--<f:facet name="header">Editar</f:facet>-->
+                        <!--<p:column headerText="Editar">
+                            <p:commandLink actionListener="{dtlistaFamilias.leer(dato)} "
+                                           oncomplete="PF('wdialogo').show();"></p:commandLink>-->
+                            <!--<h:commandButton action="{dtlistaFamilias.editar(customer.idFamilia)}" value="Editar"></h:commandButton>
+                        </p:column>-->
+                       
+                       
                         <f:facet name="paginatorTopLeft">
                             <p:commandButton type="button" icon="pi pi-refresh"/>
                         </f:facet>
@@ -135,9 +141,8 @@ and open the template in the editor.
                         
                     </p:dataTable>
                     
-                   
-                    <p:commandButton value="Insertar" rendered="#{listadoFamiliasController.accion=='R'}" actionListener="#{listadoFamiliasController.setAccion('R')}" 
-                                         oncomplete="PF('wdialogo1').show();" update=":frmProincipal:tablaPrincipal"/>
+                   <p:commandButton icon="ui-icon-check" value="Volver"  onclick="paginaprincipal();"/>
+                    
                 </h:form>
                 
                 
@@ -146,3 +151,4 @@ and open the template in the editor.
         </ui:composition>
     </body>
 </html>
+

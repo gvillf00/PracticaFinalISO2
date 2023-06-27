@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>Página de gestión</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/tiendaonline.css" rel="stylesheet" type="text/css"/>
+         
+    </head>
+    <body>
+        
+        
+         <!--Siempre todo dentro de un formulario si no va a cascar-->
+         
+         <ui:composition template="./WEB-INF/template/newTemplate.xhtml">
+
+            <ui:define name="content">
+                
+                
+
+                <!--
+                Note: Rows and columns can have style, styleClass, and id.
+                Note: A column with a defined styleClass will ignore the styleClass specified in the columnClasses list.
+                Note: Note the use of ui-fluid to ensure that components are sized correctly and the use of ui-panelgrid-blank to remove borders.
+                -->
+                <h:form> <!--para qeu coja bien las llamadas al servidor, todo lo que necesite comunicación con el servidor-->
+                    
+                    <h:outputScript library="js" name="mensajes.js"/> <!--enlace con javascript para mensajes de error u ok-->
+                    
+                    <p:fieldset legend="Datos del Cliente">
+                        <p:link value="Acceso Nuevo Cliente" outcome="altacliente"/><br/><br/>
+                        <p:link value="Acceso Listado de Clientes" outcome="clientesListado"/><br/><br/>
+                        <p:link value="Acceso Listado Direcciones de Clientes" outcome="DireccionesListado"/><br/><br/>
+                        <p:link value="Acceso Nueva Dirección de clientes" outcome="altaDireccionCliente"/><br/><br/>
+                    </p:fieldset>
+                    <p></p><p></p><p></p>
+                    
+                    <p:fieldset legend="Datos de las Familias de productos">
+                        <p:link value="Acceso Listado Familias" outcome="familiaslistado"/><br/><br/>
+                        <p:link value="Acceso Nueva Familia" outcome="altafamilias"/><br/><br/>
+                    </p:fieldset>
+                    <p></p><p></p><p></p>
+                    
+                    <p:fieldset legend="Datos de los Productos">
+                        <p:link value="Acceso Listado Productos" outcome="productosListado"/><br/><br/>
+                        <p:link value="Acceso Nuevo Producto" outcome="altaProducto"/><br/><br/>
+                        <p:link value="Acceso Listado Stocks" outcome="stockslistado"/><br/><br/>
+                        <p:link value="Acceso Introducir Stock Producto" outcome="AltaStock"/><br/><br/>
+                    </p:fieldset>
+                    <p></p><p></p><p></p>
+                    
+                    <p:fieldset legend="Gestión de Usuarios">
+                    <p:link value="Acceso Introducir Nuevos Usuarios en la app" outcome="administrador"/><br/><br/>
+                    </p:fieldset>
+                    
+                    <!-- quitamos el botón cerrar sesión porque lo tenemos en la plantilla del menú
+                    <p:commandButton icon="ui-icon-check" value="Cerrar Sesión"  onclick="redireccionar('login.xhtml');"/>
+                    -->
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>
